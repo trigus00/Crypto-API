@@ -9,16 +9,20 @@ import {CalendarModule} from 'primeng/calendar';
 
 
 
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CyptoDashboardComponent } from './cypto-dashboard/cypto-dashboard.component';
+import * as ApexCharts from 'apexcharts';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CyptoDashboardComponent,
+    // ApexCharts
 
   ],
   imports: [
@@ -28,7 +32,9 @@ import { CyptoDashboardComponent } from './cypto-dashboard/cypto-dashboard.compo
     FormsModule,
     BrowserAnimationsModule,
     NgApexchartsModule,
-    CalendarModule
+    CalendarModule,
+   
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

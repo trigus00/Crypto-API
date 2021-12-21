@@ -1,9 +1,19 @@
 <p>cypto-dashboard works!</p>
 <div>
-<p-calendar [(ngModel)]="value" dateFormat="yy-mm-dd" hourFormat="12" ></p-calendar>
-<input type="text" [(ngModel)]="search" placeholder=" Enter coin" >
-<button type = "button" (click) = "getCoinData()" > Search</button>
+        <label for = "date">Date</label>
+        <p-calendar [(ngModel)]="value" dateFormat="yy-mm-dd" hourFormat="12"></p-calendar>
+    <input type="text" [(ngModel)]="search" placeholder=" Enter coin">
+    <button type="button" (click)="getCoinData()"> Search</button>
 </div>
 
 
 
+<div>
+    <apx-chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [xaxis]="chartOptions.xaxis"
+    [yaxis]="chartOptions.yaxis"
+    [title]="chartOptions.title"
+  ></apx-chart>
+</div>
