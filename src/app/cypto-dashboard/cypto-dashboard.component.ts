@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CryptoDataService } from '../crypto-data.service';
-import { ChartComponent, ApexAxisChartSeries, ApexChart, ApexYAxis, ApexXAxis, ApexTitleSubtitle } from 'ng-apexcharts';
-import myData from '../../assets/gus.json'
+import { ChartComponent, ApexAxisChartSeries, ApexChart, ApexYAxis, ApexXAxis, ApexTitleSubtitle} from 'ng-apexcharts';
+// import myData from '../../assets/gus.json'
 
 
 type DataPoint = {
@@ -52,51 +52,37 @@ export class CyptoDashboardComponent implements OnInit {
 
 
   getCoinData() {
-    // this.search = this.search.toUpperCase()
-    // this.CryptoDataService.getCoin(this.search, this.value)
-    //   .subscribe((response: any) => {
-    //     this.coinData = response
-    //     // console.log(this.coinData)
-    //     this.coinData.forEach(item => {
-    //       // Store the data High,Low, Open, close 
-    //       // Array of items 
-    //       const dp: DataPoint = {
-    //         // x: item.time_open,
-    //         x: new Date(1538778600000),
-    //         y: [item.rate_close, item.rate_low, item.rate_high, item.rate_open]
-    //       }
-    //       this.dataPoints.push(dp);
+    this.search = this.search.toUpperCase()
+    this.CryptoDataService.getCoin(this.search, this.value)
+      .subscribe((response: any) => {
+        this.coinData = response
+        // console.log(this.coinData)
+        this.coinData.forEach(item => {
+          // Store the data High,Low, Open, close 
+          // Array of items 
+          const dp: DataPoint = {
+            x: item.time_open,
+           
+            y: [item.rate_close, item.rate_low, item.rate_high, item.rate_open]
+          }
+          this.dataPoints.push(dp);
 
-    //     })
-    //     console.log(this.dataPoints)
+        })
+        // console.log(this.dataPoints)
 
-    //   })
-  
-      this.coinData = myData
-          // console.log(this.coinData)
-          this.coinData.forEach(item => {
-            // Store the data High,Low, Open, close 
-            // Array of items 
-            const dp: DataPoint = {
-              x: item.time_open,
-              // x: new Date(1538778600000),
-              y: [item.rate_close, item.rate_low, item.rate_high, item.rate_open]
-            }
-            this.dataPoints.push(dp);
-  
-          })
-          console.log(this.dataPoints)
-    
+      })    
   }
-
+  updateGraph(){
+  
+  }
   
 
   public chartOptions: Partial<ChartOptions> = {
 
-    series: {
+    series: [{
       name: "Cypto Candle Stick Chart",
       data: this.dataPoints
-    }
+    }]
     ,
     chart: {
       type: "candlestick",

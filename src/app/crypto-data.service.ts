@@ -12,28 +12,24 @@ export class CryptoDataService {
   hearders = new HttpHeaders()
   .set('Accept' , 'application/json')
   .set('X-CoinAPI-Key',this.key)
+  // .set('Accept-Encoding','gzip,deflate')
+  .set(`X-RateLimit-Remaining`, `SUM(X-RateLimit-Request-Cost)` )
 
-
-  currentDate = new Date(new Date)
+  currentDate = new Date()
 
   constructor(private http: HttpClient) { }
   
 
   getCoin(search: string,date: Date) {
-    console.log(date.toISOString())
+  date.toUTCString()
     
     return this.http.get(`https://rest.coinapi.io/v1/exchangerate/${search}/USD/history?period_id=5MIN&limit=100&time_start=${date.toISOString()}`,{'headers':this.hearders})
     
-
+  }
+  getVolume(){
+    return this.http.get(`https://rest.coinapi.io/v1/assets`,{'headers':this.hearders})
   }
 
-  getDetails(search: string) {
-    return this.http.get(`https://api.gemini.com/v2/ticker/${search}`)
-  }
-
-  getCoinCap(search: string ){
-    return this.http.get(`https://api.coincap.io/v2/assets/${search}`,{'headers':this.hearders})
-  }
 }
 
 // {
